@@ -1,0 +1,141 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 20% auto;
+  grid-template-areas: "people main-area";
+}
+.centered-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.centered-form_form{
+  align-items: center;
+  display: flex;
+  height: 40vh;
+  width:40vw;
+  justify-content: center;
+  background-color: darkslateblue;
+  border-radius: 10px;
+}
+
+
+.form-field{
+  font-size: large;
+  padding: 0.5rem;
+  color: white;
+  width: 30vw;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: block;
+}
+.form-field input{
+  margin-top: 1rem;
+  width:inherit;
+  height: 2rem;
+  font-size: large;
+}
+.form-field button{
+  padding:0.1rem 2rem;
+  width: auto;
+  height: auto;
+  font-size: large;
+}
+
+.people{
+  grid-area: people;
+  background: rgba(38,42,148,1);
+  /* height: 100vh; */
+  color: whitesmoke;
+  text-align: center;
+}
+.users, .users ol{
+  color: white;
+  padding: 0;
+  margin: 0;
+  width: 20vw;
+  list-style: none;
+  justify-content: center;
+}
+
+.users li{
+  color: white;
+  width: 10vw;
+  padding: 0.1rem;
+  margin: 0.5rem;
+  margin-right: 0.5rem;
+  background-color: cadetblue;
+}
+
+.main-area{
+  grid-area: main-area;
+  /* height: 100vh; */
+  display: grid;
+  grid-template-rows: auto 7vh;
+  grid-template-areas: "list"
+                        "interaction";
+}
+
+.list{
+  grid-area: list;
+  font-size: 1.5rem;
+}
+
+.msg-list{
+  list-style: none;
+
+}
+
+.message-title h4{
+  margin: 0;
+  display: inline-block;
+}
+
+.message-body p{
+  margin-top: 0.2rem;
+  margin-bottom: 1.5rem;
+}
+
+span{
+  color: dimgrey;
+  /* text-align: right; */
+  font-size: 0.8rem;
+  display: inline-block;
+  align-items: center;
+}
+
+.interaction{
+  grid-area: interaction;
+  background-color: rgba(35,23,108,1);
+}
+
+#message-form{
+  height: 5vh;
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+#message-form input, button{
+  height: inherit;
+  font-size: large;
+}
+#message-form input{
+  width:30vw;
+}
+
+.send-button, .send-location{
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: large;
+}
