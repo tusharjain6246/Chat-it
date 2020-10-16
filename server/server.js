@@ -42,11 +42,11 @@ io.on('connection',(socket)=>{
     io.to(params.room).emit('updateList', users.getUserList(params.room));
 
 
-    socket.emit('newMsg',generateMessage('admin', 'welcome to chat app'));
+    // socket.emit('newMsg',generateMessage('admin', 'welcome to chat app'));
 
     socket.broadcast.to(params.room).emit('newMsg',generateMessage('admin', `${params.name} joins`));
     if(params.type =="student"){
-      socket.emit('newMsg',generateBotMessage('admin', 'what do you want to do'));
+      socket.emit('newMsg',generateBotMessage('admin', 'How may I help'));
     }
     callback();
   });
@@ -54,14 +54,32 @@ io.on('connection',(socket)=>{
   socket.on('createMsg',(msg, callback)=>{
     console.log('create meaasage', msg);
     var user = users.getUser(socket.id);
-    if(user && typeof msg.text =="string"){
-      io.to(user.room).emit('newMsg',generateBotMessage("admin", msg.text));
-    }
-    // else if()
-    else if (user && typeof msg.text =="string" && msg.text !=="") {
-      io.to(user.room).emit('newMsg',generateMessage(user.name, msg.text));
-    }
 
+    // else if()
+    if (user && typeof msg.text =="string" && msg.text !=="") {
+      // io.to(user.room).emit('newMsg',generateMessage(user.name, msg.text));
+      var text;
+      if(msg.text.includes('services')){
+        socket.emit('newMsg',generateMessage(user.name, msg.text));
+
+        text = "I can provide the services like different quizzes available, the class timings and many more";
+        socket.emit('newMsg',generateBotMessage("admin", text));
+
+        // io.to(user.room).emit('newMsg',generateMessage("admin", text));
+      }
+      else if(msg.text.includes("class timings")){
+        socket.emit('newMsg',generateMessage(user.name, msg.text));
+        text = `Monday 9-10am
+        Tuesday 10-12am`;
+        socket.emit('newMsg',generateBotMessage("admin", text));
+
+        // io.to(user.room).emit('newMsg',generateMessage("admin", text));
+      }
+      else{
+        io.to(user.room).emit('newMsg',generateMessage(user.name, msg.text));
+      }
+
+    }
 
     callback('this is from server');
   });
